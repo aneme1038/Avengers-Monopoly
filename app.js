@@ -1,12 +1,14 @@
 //________________________________________________________//
 //                    AVENGERS MONOPOLY                  //
 //_______________________________________________________//
-//Objects needed for Monopoly
-  //1. Hero Card Objects
-  //2. Stark Industry Card Objects
-  //3. Infinity Gauntlet Card Objects
-  //4. Player Class
-  //5. Gameboard Class
+
+//variable to set the amount of players for a single game
+let playerAmount;
+//the results of shuffling the decks of cards
+let startingStarkDeck = [];
+let startingInfinityDeck = [];
+//player starting order
+let playerTurnOrder = [];
 //__________________
 // HERO CARDS
 //__________________
@@ -459,6 +461,7 @@ class Player {
     this.bankTotal = 1500;
     this.jailFreeCard = false;
     this.startingRoll = 0;
+    this.currentPosition = null;
   }
   checkHero () {
     //build logic to check if the current hero player landed on is available to buy
@@ -506,10 +509,11 @@ class Player {
 //Functions needed for MONOPOLY
   // 0. Determine Player Amount
 const determinePlayerAmt = () => {
-  let total;
   //make variable that takes in what user entered in form (maximum  6 players).
+  let total;
   if (total > 6) {
     alert("You cannot have more than 6 players");
+    break;
   }
   return total;
 }
@@ -521,7 +525,7 @@ const doubleDiceRoll = () => {
 }
 // 2. Draw Stark Chance Card Function
 const drawStarkCard = () => {
-
+  //display modal with text == card text and based on result of card, initiate function call
 }
 // 3. Draw Infinity Gauntlet Chance Card Function
 const drawInfinityCard = () => {
@@ -549,8 +553,8 @@ const movePieceForward = (player, roll) => {
 const movePieceBackward = (player, roll) => {
 
 }
-const moveToSpace = (player) => {
-
+const moveToSpace = (player, position) => {
+  player.currentPosition = position;
 }
 // 12. Pass Go Function
 const passGo = (player) => {
@@ -584,80 +588,94 @@ const battleChildOfThanos = (player, number) => {
 
 //gameboard
 const gameboard = [
-  {go: passGo(currentPlayer)},
-  heroCards.mariaHill,
-  {draw: drawStarkCard()},
-  heroCards.nickFury,
-  {ultron: taxSpaces(currentPlayer)},
-  {cullObsidian: battleChildOfThanos(currentPlayer, 1)},
-  heroCards.theWasp,
-  {draw: drawInfinityCard()},
-  heroCards.falcon,
-  heroCards.ironSpider,
-  {jail: "Just Visiting"},
-  heroCards.drax,
-  heroCards.winterSoldier,
-  heroCards.groot,
-  heroCards.starLord,
-  {proximaMidnight: battleChildOfThanos(currentPlayer, 2)},
-  heroCards.mantis,
-  {draw: drawStarkCard()},
-  heroCards.stonekeeper,
-  heroCards.gamora,
-  {freeParking: "Free Parking"},
-  heroCards.valkyrie,
-  {draw: drawInfinityCard()},
-  heroCards.heimdall,
-  heroCards.theCollector,
-  {corvusGlaive: battleChildOfThanos(currentPlayer, 3)},
-  heroCards.shuri,
-  heroCards.scarletWitch,
-  heroCards.blackPanther,
-  heroCards.vision,
-  {jail: goToJail(currentPlayer)},
-  heroCards.wong,
-  heroCards.theAncientOne,
-  {draw: drawStarkCard()},
-  heroCards.doctorStrange,
-  {ebonyMaw: battleChildOfThanos(currentPlayer, 4)},
-  {draw: drawInfinityCard()},
-  heroCards.loki,
-  {hela: taxSpaces(currentPlayer)},
-  heroCards.odin
+  /*0*/{go: passGo(currentPlayer)},
+  /*1*/heroCards.mariaHill,
+  /*2*/{draw: drawStarkCard()},
+  /*3*/heroCards.nickFury,
+  /*4*/{ultron: taxSpaces(currentPlayer)},
+  /*5*/{cullObsidian: battleChildOfThanos(currentPlayer, 1)},
+  /*6*/heroCards.theWasp,
+  /*7*/{draw: drawInfinityCard()},
+  /*8*/heroCards.falcon,
+  /*9*/heroCards.ironSpider,
+  /*10*/{jail: "Just Visiting"},
+  /*11*/heroCards.drax,
+  /*12*/heroCards.winterSoldier,
+  /*13*/heroCards.groot,
+  /*14*/heroCards.starLord,
+  /*15*/{proximaMidnight: battleChildOfThanos(currentPlayer, 2)},
+  /*16*/heroCards.mantis,
+  /*17*/{draw: drawStarkCard()},
+  /*18*/heroCards.stonekeeper,
+  /*19*/heroCards.gamora,
+  /*20*/{freeParking: "Free Parking"},
+  /*21*/heroCards.valkyrie,
+  /*22*/{draw: drawInfinityCard()},
+  /*23*/heroCards.heimdall,
+  /*24*/heroCards.theCollector,
+  /*25*/{corvusGlaive: battleChildOfThanos(currentPlayer, 3)},
+  /*26*/heroCards.shuri,
+  /*27*/heroCards.scarletWitch,
+  /*28*/heroCards.blackPanther,
+  /*29*/heroCards.vision,
+  /*30*/{jail: goToJail(currentPlayer)},
+  /*31*/heroCards.wong,
+  /*32*/heroCards.theAncientOne,
+  /*33*/{draw: drawStarkCard()},
+  /*34*/heroCards.doctorStrange,
+  /*35*/{ebonyMaw: battleChildOfThanos(currentPlayer, 4)},
+  /*36*/{draw: drawInfinityCard()},
+  /*37*/heroCards.loki,
+  /*38*/{hela: taxSpaces(currentPlayer)},
+  /*39*/heroCards.odin
 ]
 //card decks
 let starkCardPile = [
   {
     text: "You attempt to lift Mjolnir at a party, and it nearly moves! Collect 20",
-    value: 20
+    event: () => {
+      currentPlayer.bankTotal += 20;
+    }
   },
   {
     text: "You and Natasha Romanoff fend off an attack from the Children of Thanos",
-    value: 100
+    event: () => {
+      currentPlayer.bankTotal += 100;
+    }
   },
   {
     text: "You fortify your armor with Wakandan Vibranium. Collect 25",
-    value: 25
+    event: () => {
+      currentPlayer.bankTotal += 25;
+    }
   },
   {
     text: "Doctor Strange offers you Tea, but you don't drink tea. He conjures your drink of choice instead. Cheers! Collect 10",
-    value: 10
+    event: () => {
+      currentPlayer.bankTotal += 10;
+    }
   },
   {
     text: "You destroy Hydra's Helicarriers and foil Project Insight! Collect 200",
-    value: 200
+    event: () => {
+      currentPlayer.bankTotal += 200;
+    }
   },
   {
     text: "Another successful raid on a Hydra compound. Collect 100",
-    value: 100
+    event: () => {
+      currentPlayer.bankTotal += 100;
+    }
   },
   {
     text: "You manage to subdue the Hulk with the HulkBuster Armor, but now the whole neighborhood is in ruins. Pay 50",
-    value: -50
+    event: () => {
+      currentPlayer.bankTotal -= 50;
+    }
   },
   {
     text: "The Avengers have Thanos restrained! Now's your chance! Advance to Go. Collect 200.",
-    event: passGo(currentPlayer)
+    event: moveToSpace(currentPlayer, gameboard[0])
   },
   {
     text: "The World Security Council does not approve of your operations. For each Base, Pay 40. For each Headquarters, Pay 100.",
@@ -671,7 +689,9 @@ let starkCardPile = [
   },
   {
     text: "Scarlet Witch fills your mind with terrible visions of destruction. Pay 50",
-    value: -50
+    event: () => {
+      currentPlayer.bankTotal -= 50;
+    }
   },
   {
     text: "You convince everyone to sign the Sokovia Accords. Collect 10 from each player",
@@ -688,7 +708,9 @@ let starkCardPile = [
   },
   {
     text: "It's going to take a lot of money to rebuild Tony Stark's Malibu Mansion. Pay 100.",
-    value: -100
+    event: () => {
+      currentPlayer.bankTotal -= 100;
+    }
   },
   {
     text: "You're trapped in the Quantum Realm! GO TO JAIL. GO DIRECTLY TO JAIL. DO NOT PASS GO. DO NOT COLLECT 200.",
@@ -696,11 +718,15 @@ let starkCardPile = [
   },
   {
     text: "Tony Stark is ready to debut his newest suit featuring NanoTechnology! Collect 100.",
-    value: 100
+    event: () => {
+      currentPlayer.bankTotal += 100;
+    }
   },
   {
     text: "Shuri gives you a tour of her lab and doesn't roast you for your shoes! Collect 50.",
-    value: 50
+    event: () => {
+      currentPlayer.bankTotal += 50;
+    }
   }
 ]
 let infinityGauntletPile = [
@@ -709,9 +735,9 @@ let infinityGauntletPile = [
     event: () => {
       let result = singleDiceRoll();
       if (result % 2 == 0) {
-        movePieceForward(currentPlayer, result)
+        movePieceForward(currentPlayer, result, currentPlayer.currentPosition)
       } else {
-        movePieceBackward(currentPlayer, result)
+        movePieceBackward(currentPlayer, result, currentPlayer.currentPosition)
       }
     }
   },
@@ -720,9 +746,9 @@ let infinityGauntletPile = [
     event: () => {
       let result = singleDiceRoll();
       if (result % 2 == 0) {
-        moveToSpace(currentPlayer, "Insert HERE")
+        moveToSpace(currentPlayer, gameboard[18])
       } else {
-        moveToSpace(currentPlayer, "Insert HERE")
+        moveToSpace(currentPlayer, gameboard[23])
       }
     }
   },
@@ -887,13 +913,8 @@ let infinityGauntletPile = [
     }
   }
 ]
-//variable to set the amount of players for a single game
-let playerAmount;
-//the results of shuffling the decks of cards
-let startingStarkDeck = [];
-let startingInfinityDeck = [];
-//player starting order
-let playerTurnOrder = [];
+
+
 //_______________________
 // GAME START FUNCTIONS
 //_______________________
@@ -965,13 +986,10 @@ const gameStart = () => {
 }
 
 
-
-//Player Class Object
-  //1. Money in Bank
-  //2. Owned Properties / Heroes
-  //3. Owned Houses / Bases
-  //4. Owned Hotels / HQ's
-  //5. Game Piece.
-
-//Variables Needed for Monopoly
-  // 1.
+//checklist
+  //1. Create functions
+  //2. Create players
+  //3. create gameboard
+  //4. create cards
+  //5. create rules ?
+  //6.
