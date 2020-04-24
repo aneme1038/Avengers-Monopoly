@@ -2,70 +2,32 @@
 //                    AVENGERS MONOPOLY                  //
 //_______________________________________________________//
 
-//_________________________
-// HANDLERS / FUNCTIONS
-//_________________________
-//Functions needed for MONOPOLY
-  // 1. Double Dice Roll Function
-const doubleDiceRoll = () => {
-  //pick a random number from each dice and return the combined total
-  let x = Math.floor(Math.random() * 12) + 1;
-  return x;
-}
-// 2. Draw Stark Chance Card Function
-const drawStarkCard = () => {
-
-}
-// 3. Draw Infinity Gauntlet Chance Card Function
-// 4. Determine Player Start Order via dice roll function
-// 5. Single Dice Roll Function for battling children of Thanos
-const singleDiceRoll = () => {
-  let x = Math.floor(Math.random() * 6) + 1;
-  return x;
-}
-// 6. Property Check Function
-// 7. Purchase House / Base Function
-// 8. Purchase Hotel / Headquarters Function
-// 9. Determine if player has full color set function
-// 10. Move player function (Forwards and Backwards Functions)
-const movePieceForward = (player, roll) => {
-
-}
-const movePieceBackward = (player, roll) => {
-
-}
-// 11. Pass Go Function
-const passGo = (player) => {
-  return player.bankTotal + 200
-}
-// 12. Go to Jail Function and Get out of Jail Function
-const goToJail = (player) => {
-  if (player.inJail !== true) {
-    player.inJail == true
-  }
-  moveToSpace(player, "INSERT SPACE HERE");
-}
-const getOutOfJail = (player) => {
-  if (player.inJail == true) {
-    player.inJail == false
-  }
-}
-// 13. Calculate Utility Payment
-
 //__________________
-// PLAYER FACTORY
+// PLAYER CLASS
 //__________________
-class PlayerFactory {
+class Player {
   constructor (name, gamePiece, bankTotal, heroes) {
     this.name = name;
     this.gamePiece = gamePiece;
     this.bankTotal = bankTotal;
     this.heroes = heroes;
+    this.inJail = false;
+    this.bankTotal = 1500;
+    this.jailFreeCard = false;
   }
   checkHero () {
     //build logic to check if the current hero player landed on is available to buy
     //add conditional to check for this. IF hero is owned, initiate the Pay Owner function.
     //Else, prompt user to either buy the hero or initiate the Auction function
+  }
+  buyHero () {
+    //build logic to buy hero after checkHero is called
+    let isAvailable = checkHero();
+    if (isAvailable == true) {
+      //then player can buy hero
+    } else {
+      //player cannot buy hero and must pay owner of hero
+    }
   }
   tradeHero () {
     //build logic to trade a hero to another player for money or another hero.
@@ -92,6 +54,74 @@ class PlayerFactory {
     //build logic to sell a base on a hero
   }
 }
+//_________________________
+// HANDLERS / FUNCTIONS
+//_________________________
+//Functions needed for MONOPOLY
+  // 0. Determine Player Amount
+const determinePlayerAmt = () => {
+  let total;
+  //make variable that takes in what user entered in form (maximum  6 players).
+  if (total > 6) {
+    alert("You cannot have more than 6 players");
+  }
+  return total;
+}
+  // 1. Double Dice Roll Function
+const doubleDiceRoll = () => {
+  //pick a random number from each dice and return the combined total
+  let x = Math.floor(Math.random() * 12) + 1;
+  return x;
+}
+// 2. Draw Stark Chance Card Function
+const drawStarkCard = () => {
+
+}
+// 3. Draw Infinity Gauntlet Chance Card Function
+// 4. Determine Player Start Order via dice roll function
+// 5. Single Dice Roll Function for battling children of Thanos
+const singleDiceRoll = () => {
+  let x = Math.floor(Math.random() * 6) + 1;
+  return x;
+}
+// 6. Property Check Function
+// 7. Purchase House / Base Function
+// 8. Purchase Hotel / Headquarters Function
+// 9. Determine if player has full color set function
+// 10. Payment for amount of assets owned
+const assetPayment = (currentPlayer) => {
+
+}
+// 11. Move player function (Forwards and Backwards Functions, and specific space)
+
+const movePieceForward = (player, roll) => {
+
+}
+const movePieceBackward = (player, roll) => {
+
+}
+const moveToSpace = (player) => {
+
+}
+// 12. Pass Go Function
+const passGo = (player) => {
+  return player.bankTotal + 200
+}
+// 13. Go to Jail Function and Get out of Jail Function
+const goToJail = (player) => {
+  if (player.inJail !== true) {
+    player.inJail == true
+  }
+  moveToSpace(player, "INSERT SPACE HERE");
+}
+const getOutOfJail = (player) => {
+  if (player.inJail == true) {
+    player.inJail == false
+  }
+}
+// 14. Calculate Utility Payment
+
+
 //__________________
 // GLOBAL VARIABLES
 //__________________
@@ -372,15 +402,46 @@ const shuffleDeck = (deck) => {
     deck[j] = temp;
   }
 }
+const generatePlayers = (playerAmount) => {
+  if (playerAmount == 2) {
+    let player1 = new Player();
+    let player2 = new Player();
+    playersArray.push(player1, player2);
+  } else if (playerAmount == 3) {
+    let player1 = new Player();
+    let player2 = new Player();
+    let player3 = new Player();
+    playersArray.push(player1, player2, player3);
+  } else if (playerAmount == 4) {
+    let player1 = new Player();
+    let player2 = new Player();
+    let player3 = new Player();
+    let player4 = new Player();
+    playersArray.push(player1, player2, player3, player4);
+  } else if (playerAmount == 5) {
+    let player1 = new Player();
+    let player2 = new Player();
+    let player3 = new Player();
+    let player4 = new Player();
+    let player5 = new Player();
+    playersArray.push(player1, player2, player3, player4, player5);
+  } else if (playerAmount == 6) {
+    let player1 = new Player();
+    let player2 = new Player();
+    let player3 = new Player();
+    let player4 = new Player();
+    let player5 = new Player();
+    let player6 = new Player();
+    playersArray.push(player1, player2, player3, player4, player5, player6);
+  }
+}
 const gameStart = () => {
   playerAmount = determinePlayerAmt();
-  //Based on player amount, next prompt users to pick their game pieces and enter their name for player objects.
+  //Based on player amount, generate the players
+  generatePlayers(playerAmount);
+  //shuffle the chance card decks
   startingStarkDeck = shuffleDeck(starkCardPile);
   startingInfinityDeck = shuffleDeck(infinityGauntletPile);
-  //Next, allow players to choose their game piece.
-    //Function call here.
-  //After players select pieces, give players their money.
-
 }
 //Objects needed for Monopoly
   //1. Hero Card Objects
