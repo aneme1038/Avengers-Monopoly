@@ -458,6 +458,7 @@ class Player {
     this.inJail = false;
     this.bankTotal = 1500;
     this.jailFreeCard = false;
+    this.startingRoll = 0;
   }
   checkHero () {
     //build logic to check if the current hero player landed on is available to buy
@@ -580,9 +581,8 @@ const battleChildOfThanos = (player, number) => {
 //__________________
 // GLOBAL VARIABLES
 //__________________
-//__________________
-// GAMEBOARD
-//__________________
+
+//gameboard
 const gameboard = [
   {go: passGo(currentPlayer)},
   heroCards.mariaHill,
@@ -625,6 +625,7 @@ const gameboard = [
   {hela: taxSpaces(currentPlayer)},
   heroCards.odin
 ]
+//card decks
 let starkCardPile = [
   {
     text: "You attempt to lift Mjolnir at a party, and it nearly moves! Collect 20",
@@ -886,9 +887,13 @@ let infinityGauntletPile = [
     }
   }
 ]
+//variable to set the amount of players for a single game
 let playerAmount;
+//the results of shuffling the decks of cards
 let startingStarkDeck = [];
 let startingInfinityDeck = [];
+//player starting order
+let playerTurnOrder = [];
 //_______________________
 // GAME START FUNCTIONS
 //_______________________
@@ -942,6 +947,21 @@ const gameStart = () => {
   //shuffle the chance card decks
   startingStarkDeck = shuffleDeck(starkCardPile);
   startingInfinityDeck = shuffleDeck(infinityGauntletPile);
+  //determine who gets to go first
+  while (playerAmount > 0) {
+    let highestRoll = 0;
+    let result;
+    let winner;
+    for (let i = 0; i < playersArray.length; i++) {
+      result = doubleDiceRoll();
+      if (result > highestRoll) {
+        highestRoll = result;
+        winner = playersArray[i];
+      }
+    }
+    playerTurnOrder.push(winner);
+    playerAmount--;
+  }
 }
 
 
