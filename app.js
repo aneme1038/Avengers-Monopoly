@@ -1,7 +1,451 @@
 //________________________________________________________//
 //                    AVENGERS MONOPOLY                  //
 //_______________________________________________________//
-
+//Objects needed for Monopoly
+  //1. Hero Card Objects
+  //2. Stark Industry Card Objects
+  //3. Infinity Gauntlet Card Objects
+  //4. Player Class
+  //5. Gameboard Class
+//__________________
+// HERO CARDS
+//__________________
+const heroCards = {
+  mariaHill: {
+    cost: 60,
+    color: "brown",
+    set: "brown",
+    sidelineValue: 30,
+    reactivationFee: 33,
+    baseCost: 50,
+    headquartersCost: 50,
+    payments: {
+      payment: 2,
+      paymentWithColorSet: 4,
+      paymentWithOneBase: 10,
+      paymentWithTwoBases: 30,
+      paymentWithThreeBases: 90,
+      paymentWithFourBases: 160,
+      paymentWithHeadquarters: 250
+    },
+    owner: null
+  },
+  nickFury: {
+    cost: 60,
+    color: "brown",
+    set: "brown",
+    sidelineValue: 30,
+    reactivationFee: 33,
+    baseCost: 50,
+    headquartersCost: 50,
+    payments: {
+      payment: 4,
+      paymentWithColorSet: 8,
+      paymentWithOneBase: 20,
+      paymentWithTwoBases: 60,
+      paymentWithThreeBases: 180,
+      paymentWithFourBases: 320,
+      paymentWithHeadquarters: 450
+    },
+    owner: null
+  },
+  theWasp: {
+    cost: 100,
+    color: "light blue",
+    set: "light blue",
+    sidelineValue: 50,
+    reactivationFee: 55,
+    baseCost: 50,
+    headquartersCost: 50,
+    payments: {
+      payment: 6,
+      paymentWithColorSet: 12,
+      paymentWithOneBase: 30,
+      paymentWithTwoBases: 90,
+      paymentWithThreeBases: 270,
+      paymentWithFourBases: 400,
+      paymentWithHeadquarters: 550
+    },
+    owner: null
+  },
+  falcon: {
+    cost: 100,
+    color: "light blue",
+    set: "light blue",
+    sidelineValue: 50,
+    reactivationFee: 55,
+    baseCost: 50,
+    headquartersCost: 50,
+    payments: {
+      payment: 6,
+      paymentWithColorSet: 12,
+      paymentWithOneBase: 30,
+      paymentWithTwoBases: 90,
+      paymentWithThreeBases: 270,
+      paymentWithFourBases: 400,
+      paymentWithHeadquarters: 550
+    },
+    owner: null
+  },
+  ironSpider: {
+    cost: 120,
+    color: "light blue",
+    set: "light blue",
+    sidelineValue: 60,
+    reactivationFee: 66,
+    baseCost: 50,
+    headquartersCost: 50,
+    payments: {
+      payment: 8,
+      paymentWithColorSet: 16,
+      paymentWithOneBase: 40,
+      paymentWithTwoBases: 100,
+      paymentWithThreeBases: 300,
+      paymentWithFourBases: 450,
+      paymentWithHeadquarters: 600
+    },
+    owner: null
+  },
+  drax: {
+    cost: 140,
+    color: "purple",
+    set: "purple",
+    sidelineValue: 70,
+    reactivationFee: 77,
+    baseCost: 100,
+    headquartersCost: 100,
+    payments: {
+      payment: 10,
+      paymentWithColorSet: 20,
+      paymentWithOneBase: 50,
+      paymentWithTwoBases: 150,
+      paymentWithThreeBases: 450,
+      paymentWithFourBases: 625,
+      paymentWithHeadquarters: 750
+    },
+    owner: null
+  },
+  winterSoldier: {
+    cost: 150,
+    color: "utility",
+    set: "utility",
+    sidelineValue: 75,
+    reactivationFee: 83,
+    owner: null
+  },
+  groot: {
+    cost: 140,
+    color: "purple",
+    set: "purple",
+    sidelineValue: 70,
+    reactivationFee: 77,
+    baseCost: 100,
+    headquartersCost: 100,
+    payments: {
+      payment: 10,
+      paymentWithColorSet: 20,
+      paymentWithOneBase: 50,
+      paymentWithTwoBases: 150,
+      paymentWithThreeBases: 450,
+      paymentWithFourBases: 625,
+      paymentWithHeadquarters: 750
+    },
+    owner: null
+  },
+  starLord: {
+    cost: 160,
+    color: "purple",
+    set: "purple",
+    sidelineValue: 80,
+    reactivationFee: 88,
+    baseCost: 100,
+    headquartersCost: 100,
+    payments: {
+      payment: 12,
+      paymentWithColorSet: 24,
+      paymentWithOneBase: 60,
+      paymentWithTwoBases: 180,
+      paymentWithThreeBases: 500,
+      paymentWithFourBases: 700,
+      paymentWithHeadquarters: 900
+    },
+    owner: null
+  },
+  mantis: {
+    cost: 180,
+    color: "orange",
+    set: "orange",
+    sidelineValue: 90,
+    reactivationFee: 99,
+    baseCost: 100,
+    headquartersCost: 100,
+    payments: {
+      payment: 14,
+      paymentWithColorSet: 28,
+      paymentWithOneBase: 70,
+      paymentWithTwoBases: 200,
+      paymentWithThreeBases: 550,
+      paymentWithFourBases: 750,
+      paymentWithHeadquarters: 950
+    },
+    owner: null
+  },
+  stonekeeper: {
+    cost: 180,
+    color: "orange",
+    set: "orange",
+    sidelineValue: 90,
+    reactivationFee: 99,
+    baseCost: 100,
+    headquartersCost: 100,
+    payments: {
+      payment: 14,
+      paymentWithColorSet: 28,
+      paymentWithOneBase: 70,
+      paymentWithTwoBases: 200,
+      paymentWithThreeBases: 550,
+      paymentWithFourBases: 750,
+      paymentWithHeadquarters: 950
+    },
+    owner: null
+  },
+  gamora: {
+    cost: 200,
+    color: "orange",
+    set: "orange",
+    sidelineValue: 100,
+    reactivationFee: 110,
+    baseCost: 100,
+    headquartersCost: 100,
+    payments: {
+      payment: 16,
+      paymentWithColorSet: 32,
+      paymentWithOneBase: 80,
+      paymentWithTwoBases: 220,
+      paymentWithThreeBases: 600,
+      paymentWithFourBases: 800,
+      paymentWithHeadquarters: 1000
+    },
+    owner: null
+  },
+  valkyrie: {
+    cost: 220,
+    color: "red",
+    set: "red",
+    sidelineValue: 110,
+    reactivationFee: 121,
+    baseCost: 150,
+    headquartersCost: 150,
+    payments: {
+      payment: 18,
+      paymentWithColorSet: 36,
+      paymentWithOneBase: 90,
+      paymentWithTwoBases: 250,
+      paymentWithThreeBases: 700,
+      paymentWithFourBases: 875,
+      paymentWithHeadquarters: 1050
+    },
+    owner: null
+  },
+  heimdall: {
+    cost: 220,
+    color: "red",
+    set: "red",
+    sidelineValue: 110,
+    reactivationFee: 121,
+    baseCost: 150,
+    headquartersCost: 150,
+    payments: {
+      payment: 18,
+      paymentWithColorSet: 36,
+      paymentWithOneBase: 90,
+      paymentWithTwoBases: 250,
+      paymentWithThreeBases: 700,
+      paymentWithFourBases: 875,
+      paymentWithHeadquarters: 1050
+    },
+    owner: null
+  },
+  theCollector: {
+    cost: 240,
+    color: "red",
+    set: "red",
+    sidelineValue: 120,
+    reactivationFee: 132,
+    baseCost: 150,
+    headquartersCost: 150,
+    payments: {
+      payment: 20,
+      paymentWithColorSet: 40,
+      paymentWithOneBase: 100,
+      paymentWithTwoBases: 300,
+      paymentWithThreeBases: 750,
+      paymentWithFourBases: 925,
+      paymentWithHeadquarters: 1100
+    },
+    owner: null
+  },
+  shuri: {
+    cost: 260,
+    color: "yellow",
+    set: "yellow",
+    sidelineValue: 130,
+    reactivationFee: 143,
+    baseCost: 150,
+    headquartersCost: 150,
+    payments: {
+      payment: 22,
+      paymentWithColorSet: 44,
+      paymentWithOneBase: 110,
+      paymentWithTwoBases: 300,
+      paymentWithThreeBases: 800,
+      paymentWithFourBases: 975,
+      paymentWithHeadquarters: 1150
+    },
+    owner: null
+  },
+  scarletWitch: {
+    cost: 260,
+    color: "yellow",
+    set: "yellow",
+    sidelineValue: 130,
+    reactivationFee: 143,
+    baseCost: 150,
+    headquartersCost: 150,
+    payments: {
+      payment: 22,
+      paymentWithColorSet: 44,
+      paymentWithOneBase: 110,
+      paymentWithTwoBases: 300,
+      paymentWithThreeBases: 800,
+      paymentWithFourBases: 975,
+      paymentWithHeadquarters: 1150
+    },
+    owner: null
+  },
+  blackPanther: {
+    cost: 150,
+    color: "utility",
+    set: "utility",
+    sidelineValue: 75,
+    reactivationFee: 83,
+    owner: null
+  },
+  vision: {
+    cost: 280,
+    color: "yellow",
+    set: "yellow",
+    sidelineValue: 140,
+    reactivationFee: 154,
+    baseCost: 150,
+    headquartersCost: 150,
+    payments: {
+      payment: 24,
+      paymentWithColorSet: 48,
+      paymentWithOneBase: 120,
+      paymentWithTwoBases: 360,
+      paymentWithThreeBases: 850,
+      paymentWithFourBases: 1025,
+      paymentWithHeadquarters: 1200
+    },
+    owner: null
+  },
+  wong: {
+    cost: 300,
+    color: "green",
+    set: "green",
+    sidelineValue: 150,
+    reactivationFee: 165,
+    baseCost: 200,
+    headquartersCost: 200,
+    payments: {
+      payment: 26,
+      paymentWithColorSet: 52,
+      paymentWithOneBase: 130,
+      paymentWithTwoBases: 390,
+      paymentWithThreeBases: 900,
+      paymentWithFourBases: 1100,
+      paymentWithHeadquarters: 1275
+    },
+    owner: null
+  },
+  theAncientOne: {
+    cost: 300,
+    color: "green",
+    set: "green",
+    sidelineValue: 150,
+    reactivationFee: 165,
+    baseCost: 200,
+    headquartersCost: 200,
+    payments: {
+      payment: 26,
+      paymentWithColorSet: 52,
+      paymentWithOneBase: 130,
+      paymentWithTwoBases: 390,
+      paymentWithThreeBases: 900,
+      paymentWithFourBases: 1100,
+      paymentWithHeadquarters: 1275
+    },
+    owner: null
+  },
+  doctorStrange: {
+    cost: 320,
+    color: "green",
+    set: "green",
+    sidelineValue: 160,
+    reactivationFee: 176,
+    baseCost: 200,
+    headquartersCost: 200,
+    payments: {
+      payment: 28,
+      paymentWithColorSet: 56,
+      paymentWithOneBase: 150,
+      paymentWithTwoBases: 450,
+      paymentWithThreeBases: 1000,
+      paymentWithFourBases: 1200,
+      paymentWithHeadquarters: 1400
+    },
+    owner: null
+  },
+  loki: {
+    cost: 350,
+    color: "blue",
+    set: "blue",
+    sidelineValue: 175,
+    reactivationFee: 193,
+    baseCost: 200,
+    headquartersCost: 200,
+    payments: {
+      payment: 35,
+      paymentWithColorSet: 70,
+      paymentWithOneBase: 175,
+      paymentWithTwoBases: 500,
+      paymentWithThreeBases: 1100,
+      paymentWithFourBases: 1300,
+      paymentWithHeadquarters: 1500
+    },
+    owner: null
+  },
+  odin: {
+    cost: 400,
+    color: "blue",
+    set: "blue",
+    sidelineValue: 200,
+    reactivationFee: 220,
+    baseCost: 200,
+    headquartersCost: 200,
+    payments: {
+      payment: 50,
+      paymentWithColorSet: 100,
+      paymentWithOneBase: 200,
+      paymentWithTwoBases: 600,
+      paymentWithThreeBases: 1400,
+      paymentWithFourBases: 1700,
+      paymentWithHeadquarters: 2000
+    },
+    owner: null
+  }
+}
 //__________________
 // PLAYER CLASS
 //__________________
@@ -54,6 +498,7 @@ class Player {
     //build logic to sell a base on a hero
   }
 }
+
 //_________________________
 // HANDLERS / FUNCTIONS
 //_________________________
@@ -78,6 +523,9 @@ const drawStarkCard = () => {
 
 }
 // 3. Draw Infinity Gauntlet Chance Card Function
+const drawInfinityCard = () => {
+
+}
 // 4. Determine Player Start Order via dice roll function
 // 5. Single Dice Roll Function for battling children of Thanos
 const singleDiceRoll = () => {
@@ -121,10 +569,62 @@ const getOutOfJail = (player) => {
 }
 // 14. Calculate Utility Payment
 
+// 15. pay tax if Ultron or Hela space
+const taxSpaces = (player) => {
+  player.bankTotal -= 100;
+}
+// 16. battle Child of Thanos
+const battleChildOfThanos = (player, number) => {
 
+}
 //__________________
 // GLOBAL VARIABLES
 //__________________
+//__________________
+// GAMEBOARD
+//__________________
+const gameboard = [
+  {go: passGo(currentPlayer)},
+  heroCards.mariaHill,
+  {draw: drawStarkCard()},
+  heroCards.nickFury,
+  {ultron: taxSpaces(currentPlayer)},
+  {cullObsidian: battleChildOfThanos(currentPlayer, 1)},
+  heroCards.theWasp,
+  {draw: drawInfinityCard()},
+  heroCards.falcon,
+  heroCards.ironSpider,
+  {jail: "Just Visiting"},
+  heroCards.drax,
+  heroCards.winterSoldier,
+  heroCards.groot,
+  heroCards.starLord,
+  {proximaMidnight: battleChildOfThanos(currentPlayer, 2)},
+  heroCards.mantis,
+  {draw: drawStarkCard()},
+  heroCards.stonekeeper,
+  heroCards.gamora,
+  {freeParking: "Free Parking"},
+  heroCards.valkyrie,
+  {draw: drawInfinityCard()},
+  heroCards.heimdall,
+  heroCards.theCollector,
+  {corvusGlaive: battleChildOfThanos(currentPlayer, 3)},
+  heroCards.shuri,
+  heroCards.scarletWitch,
+  heroCards.blackPanther,
+  heroCards.vision,
+  {jail: goToJail(currentPlayer)},
+  heroCards.wong,
+  heroCards.theAncientOne,
+  {draw: drawStarkCard()},
+  heroCards.doctorStrange,
+  {ebonyMaw: battleChildOfThanos(currentPlayer, 4)},
+  {draw: drawInfinityCard()},
+  heroCards.loki,
+  {hela: taxSpaces(currentPlayer)},
+  heroCards.odin
+]
 let starkCardPile = [
   {
     text: "You attempt to lift Mjolnir at a party, and it nearly moves! Collect 20",
@@ -443,10 +943,8 @@ const gameStart = () => {
   startingStarkDeck = shuffleDeck(starkCardPile);
   startingInfinityDeck = shuffleDeck(infinityGauntletPile);
 }
-//Objects needed for Monopoly
-  //1. Hero Card Objects
-  //2. Stark Industry Card Objects
-  //3. Infinity Gauntlet Card Objects
+
+
 
 //Player Class Object
   //1. Money in Bank
