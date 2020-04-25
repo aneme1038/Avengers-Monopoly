@@ -618,7 +618,7 @@ const gameboard = [
   /*27*/heroCards.scarletWitch,
   /*28*/heroCards.blackPanther,
   /*29*/heroCards.vision,
-  /*30*/{jail: goToJail(currentPlayer)},
+  /*30*/{jail: () => {goToJail(currentPlayer); moveToSpace(currentPlayer, gameBoard[10])}},
   /*31*/heroCards.wong,
   /*32*/heroCards.theAncientOne,
   /*33*/{draw: drawStarkCard()},
