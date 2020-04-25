@@ -1,7 +1,8 @@
 //________________________________________________________//
 //                    AVENGERS MONOPOLY                  //
 //_______________________________________________________//
-
+let turnCount = 0;
+let currentPlayer = null; //set currentplayer to whoever's turn it is
 //variable to set the amount of players for a single game
 let playerAmount;
 //the results of shuffling the decks of cards
@@ -503,9 +504,18 @@ class Player {
   }
 }
 
+
 //_________________________
 // HANDLERS / FUNCTIONS
 //_________________________
+const rotatePlayersArray = (array) => {
+  playersArray[0] = playersArray[(playersArray.length - 1)];
+  player = playersArray[0]
+}
+const setCurrentPlayer = (player) => {
+  //build logic to determine whose turn it is
+  player = playersArray[0]
+}
 //Functions needed for MONOPOLY
   // 0. Determine Player Amount
 const determinePlayerAmt = () => {
@@ -513,7 +523,6 @@ const determinePlayerAmt = () => {
   let total;
   if (total > 6) {
     alert("You cannot have more than 6 players");
-    break;
   }
   return total;
 }
