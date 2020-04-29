@@ -9,7 +9,64 @@ let playerAmount;
 let startingStarkDeck = [];
 let startingInfinityDeck = [];
 //player starting order
-let playerTurnOrder = [];
+let playersArray = [];
+let gamePieces = [
+  {
+    name: "Thor",
+    imageURL: "./public/thor.jpg",
+    owner: null
+  },
+  {
+    name: "The Incredible Hulk",
+    imageURL: "./public/hulk.jpg",
+    owner: null
+  },
+  {
+    name: "War Machine",
+    imageURL: "./public/warMachine.jpg",
+    owner: null
+  },
+  {
+    name: "Nebula",
+    imageURL: "./public/nebula.jpg",
+    owner: null
+  },
+  {
+    name: "Ant Man",
+    imageURL: "./public/antMan.jpg",
+    owner: null
+  },
+  {
+    name: "Captain America",
+    imageURL: "./public/captainAmerica.jpg",
+    owner: null
+  },
+  {
+    name: "Iron Man",
+    imageURL: "./public/ironMan.jpg",
+    owner: null
+  },
+  {
+    name: "Hawkeye",
+    imageURL: "./public/hawkeye.jpg",
+    owner: null
+  },
+  {
+    name: "Infinity Gauntlet",
+    imageURL: "./public/infinityGauntlet.jpg",
+    owner: null
+  },
+  {
+    name: "Rocket Racoon",
+    imageURL: "./public/rocketRacoon.jpg",
+    owner: null
+  },
+  {
+    name: "Captain Marvel",
+    imageURL: "./public/captainMarvel.jpg",
+    owner: null
+  }
+]
 //__________________
 // HERO CARDS
 //__________________
@@ -453,65 +510,67 @@ const heroCards = {
 // PLAYER CLASS
 //__________________
 class Player {
-  constructor (name, gamePiece, bankTotal, heroes) {
+  constructor (name, gamePiece) {
     this.name = name;
     this.gamePiece = gamePiece;
-    this.bankTotal = bankTotal;
-    this.heroes = heroes;
+    this.heroes = [];
     this.inJail = false;
     this.bankTotal = 1500;
     this.jailFreeCard = false;
     this.startingRoll = 0;
     this.currentPosition = null;
   }
-  checkHero () {
+  //checkHero () {
     //build logic to check if the current hero player landed on is available to buy
     //add conditional to check for this. IF hero is owned, initiate the Pay Owner function.
     //Else, prompt user to either buy the hero or initiate the Auction function
-  }
-  buyHero () {
+  //}
+  //buyHero () {
     //build logic to buy hero after checkHero is called
-    let isAvailable = checkHero();
-    if (isAvailable == true) {
-      //then player can buy hero
-    } else {
-      //player cannot buy hero and must pay owner of hero
-    }
-  }
-  tradeHero () {
+  //   let isAvailable = checkHero();
+  //   if (isAvailable == true) {
+  //     //then player can buy hero
+  //   } else {
+  //     //player cannot buy hero and must pay owner of hero
+  //   }
+  // }
+  //tradeHero () {
     //build logic to trade a hero to another player for money or another hero.
-  }
-  sidelineHero () {
-    //build logic to mortgage or sideline hero for money back to your bank.
-    //While a hero is sidelined, cannot earn revenue from other players that land on that hero.
-  }
-  reactivateHero () {
-    //build logic to reactivate a hero that was sidelined by paying the reactivation fee
-  }
-  buyBase () {
-    //build logic to buy a base on your hero or heroes. Build checks to make sure
-    //all other heroes of that color set have the same number of bases before you can build another base.
-  }
-  buyHQ () {
-    //build logic to buy a headquarters on your hero or heroes. Must have 4 Bases
-    //on all heroes before one can buy a HQ on a hero.
-  }
-  sellHQ () {
-    //build logic to sell a HQ for money.
-  }
-  sellBase () {
-    //build logic to sell a base on a hero
-  }
+  // }
+  //sidelineHero () {
+  //   //build logic to mortgage or sideline hero for money back to your bank.
+  //   //While a hero is sidelined, cannot earn revenue from other players that land on that hero.
+  // }
+  // reactivateHero () {
+  //   //build logic to reactivate a hero that was sidelined by paying the reactivation fee
+  // }
+  // buyBase () {
+  //   //build logic to buy a base on your hero or heroes. Build checks to make sure
+  //   //all other heroes of that color set have the same number of bases before you can build another base.
+  // }
+  // buyHQ () {
+  //   //build logic to buy a headquarters on your hero or heroes. Must have 4 Bases
+  //   //on all heroes before one can buy a HQ on a hero.
+  // }
+  // sellHQ () {
+  //   //build logic to sell a HQ for money.
+  // }
+  // sellBase () {
+  //   //build logic to sell a base on a hero
+  // }
 }
 
 
 //_________________________
 // HANDLERS / FUNCTIONS
 //_________________________
+
+//DONE
 const rotatePlayersArray = (array) => {
   array.unshift(array.pop());
   return array;
 }
+//DONE
 const setCurrentPlayer = (player) => {
   //build logic to determine whose turn it is
   playersArray = rotatePlayersArray(playersArray);
@@ -528,7 +587,7 @@ const determinePlayerAmt = () => {
   }
   return total;
 }
-  // 1. Double Dice Roll Function
+//DONE
 const doubleDiceRoll = () => {
   //pick a random number from each dice and return the combined total
   let x = Math.floor(Math.random() * 12) + 1;
@@ -543,6 +602,10 @@ const drawInfinityCard = () => {
 
 }
 // 4. Determine Player Start Order via dice roll function
+const playerTurnOrder = () => {
+  //Get results of player amount.
+
+}
 // 5. Single Dice Roll Function for battling children of Thanos
 const singleDiceRoll = () => {
   let x = Math.floor(Math.random() * 6) + 1;
@@ -592,6 +655,41 @@ const taxSpaces = (player) => {
 // 16. battle Child of Thanos
 const battleChildOfThanos = (player, number) => {
 
+}
+const generateTwoPlayers = () => {
+  let player1 = new Player();
+  let player2 = new Player();
+  playersArray.push(player1, player2);
+}
+const generateThreePlayers = () => {
+  let player1 = new Player();
+  let player2 = new Player();
+  let player3 = new Player();
+  playersArray.push(player1, player2, player3);
+}
+const generateFourPlayers = () => {
+  let player1 = new Player();
+  let player2 = new Player();
+  let player3 = new Player();
+  let player4 = new Player();
+  playersArray.push(player1, player2, player3, player4);
+}
+const generateFivePlayers = () => {
+  let player1 = new Player();
+  let player2 = new Player();
+  let player3 = new Player();
+  let player4 = new Player();
+  let player5 = new Player();
+  playersArray.push(player1, player2, player3, player4, player5);
+}
+const generateSixPlayers = () => {
+  let player1 = new Player();
+  let player2 = new Player();
+  let player3 = new Player();
+  let player4 = new Player();
+  let player5 = new Player();
+  let player6 = new Player();
+  playersArray.push(player1, player2, player3, player4, player5, player6);
 }
 //__________________
 // GLOBAL VARIABLES
@@ -939,43 +1037,26 @@ const shuffleDeck = (deck) => {
     deck[j] = temp;
   }
 }
-const generatePlayers = (playerAmount) => {
-  if (playerAmount == 2) {
-    let player1 = new Player();
-    let player2 = new Player();
-    playersArray.push(player1, player2);
-  } else if (playerAmount == 3) {
-    let player1 = new Player();
-    let player2 = new Player();
-    let player3 = new Player();
-    playersArray.push(player1, player2, player3);
-  } else if (playerAmount == 4) {
-    let player1 = new Player();
-    let player2 = new Player();
-    let player3 = new Player();
-    let player4 = new Player();
-    playersArray.push(player1, player2, player3, player4);
-  } else if (playerAmount == 5) {
-    let player1 = new Player();
-    let player2 = new Player();
-    let player3 = new Player();
-    let player4 = new Player();
-    let player5 = new Player();
-    playersArray.push(player1, player2, player3, player4, player5);
-  } else if (playerAmount == 6) {
-    let player1 = new Player();
-    let player2 = new Player();
-    let player3 = new Player();
-    let player4 = new Player();
-    let player5 = new Player();
-    let player6 = new Player();
-    playersArray.push(player1, player2, player3, player4, player5, player6);
+const generatePlayers = (totalPlayers) => {
+  if (totalPlayers == 2) {
+
+  } else if (totalPlayers == 3) {
+
+  } else if (totalPlayers == 4) {
+
+  } else if (totalPlayers == 5) {
+
+  } else if (totalPlayers == 6) {
+
   }
 }
 const gameStart = () => {
   playerAmount = determinePlayerAmt();
   //Based on player amount, generate the players
   generatePlayers(playerAmount);
+  //After generating players, take the generated players
+  //and determine player order
+
   //shuffle the chance card decks
   startingStarkDeck = shuffleDeck(starkCardPile);
   startingInfinityDeck = shuffleDeck(infinityGauntletPile);

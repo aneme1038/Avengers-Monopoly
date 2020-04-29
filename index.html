@@ -5,6 +5,7 @@
     <title>Avengers Monopoly</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="styles.css" rel="stylesheet">
+    <script src="app.js"></script>
   </head>
   <body>
     <!--HEADER-->
@@ -17,6 +18,58 @@
       </div>
     </header>
     <!--MAIN / GAMEBOARD -->
+    <main>
+      <div class="modalDisplayContainer">
+        <div id="rulesMenu"></div>
+        <div id="createGameMenu">
+          <h1>Start New Game</h1>
+          <div class="style-line"></div>
+          <h3>Select the Number of Players</h3>
+          <div class="sm-style-line"></div>
+          <div class="btn-BoxDisplay">
+            <button id="btn-twoPlayer">2</button>
+            <button id="btn-threePlayer">3</button>
+            <button id="btn-fourPlayer">4</button>
+            <button id="btn-fivePlayer">5</button>
+            <button id="btn-sixPlayer">6</button>
+          </div>
+          <div id="playersFormDisplay">
+            <form>
+              <input type="text" name="playerName" placeholder="Name of Player" class="txt-input"/>
+              <fieldset>
+                <legend>Select Your Token Gamepiece</legend>
+                <label for="gamepiece">THOR</label>
+                  <input type="radio" id="thorPiece" name="gamepiece" value="Thor" />
+                <label for="gamepiece">THE INCREDIBLE HULK</label>
+                  <input type="radio" id="hulkPiece" name="gamepiece" value="The Incredible Hulk" />
+                <label for="gamepiece">WAR MACHINE</label>
+                  <input type="radio" id="warMachinePiece" name="gamepiece" value="War Machine" />
+                <label for="gamepiece">NEBULA</label>
+                  <input type="radio" id="nebulaPiece" name="gamepiece" value="Nebula" />
+                <label for="gamepiece">ANT MAN</label>
+                  <input type="radio" id="antManPiece" name="gamepiece" value="Ant Man" />
+                <label for="gamepiece">CAPTAIN AMERICA</label>
+                  <input type="radio" id="captAmericaPiece" name="gamepiece" value="Captain America" />
+                <label for="gamepiece">IRON MAN</label>
+                  <input type="radio" id="ironManPiece" name="gamepiece" value="Iron Man" />
+                <label for="gamepiece">HAWKEYE</label>
+                  <input type="radio" id="hawkeyePiece" name="gamepiece" value="Hawkeye" />
+                <label for="gamepiece">INFINITY GAUNTLET</label>
+                  <input type="radio" id="infGauntletPiece" name="gamepiece" value="Infinity Gauntlet" />
+                <label for="gamepiece">ROCKET RACOON</label>
+                  <input type="radio" id="rocketRacoonPiece" name="gamepiece" value="Rocket Racoon" />
+                <label for="gamepiece">CAPTAIN MARVEL</label>
+                  <input type="radio" id="captMarvelPiece" name="gamepiece" value="Captain Marvel" />
+              </fieldset>
+              <input type="submit" name="submit">Add Player</input>
+            </form>
+          </div>
+        </div>
+        <div id="winnersCircleMenu"></div>
+      </div>
+      <div class="gameboard">
+      </div>
+    </main>
     <!--FOOTER-->
     <!--Scripts - Jquery, poppper.js, and boostrap js plugins-->
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
