@@ -509,12 +509,14 @@ class Player {
 // HANDLERS / FUNCTIONS
 //_________________________
 const rotatePlayersArray = (array) => {
-  playersArray[0] = playersArray[(playersArray.length - 1)];
-  player = playersArray[0]
+  array.unshift(array.pop());
+  return array;
 }
 const setCurrentPlayer = (player) => {
   //build logic to determine whose turn it is
+  playersArray = rotatePlayersArray(playersArray);
   player = playersArray[0]
+  return player;
 }
 //Functions needed for MONOPOLY
   // 0. Determine Player Amount
