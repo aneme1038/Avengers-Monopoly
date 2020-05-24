@@ -520,12 +520,12 @@ class Player {
     this.startingRoll = 0;
     this.currentPosition = null;
   }
-  //checkHero () {
+  checkHero () {
     //build logic to check if the current hero player landed on is available to buy
     //add conditional to check for this. IF hero is owned, initiate the Pay Owner function.
     //Else, prompt user to either buy the hero or initiate the Auction function
   //}
-  //buyHero () {
+  buyHero () {
     //build logic to buy hero after checkHero is called
   //   let isAvailable = checkHero();
   //   if (isAvailable == true) {
@@ -533,31 +533,31 @@ class Player {
   //   } else {
   //     //player cannot buy hero and must pay owner of hero
   //   }
-  // }
-  //tradeHero () {
+  }
+  tradeHero () {
     //build logic to trade a hero to another player for money or another hero.
-  // }
-  //sidelineHero () {
+  }
+  sidelineHero () {
   //   //build logic to mortgage or sideline hero for money back to your bank.
   //   //While a hero is sidelined, cannot earn revenue from other players that land on that hero.
-  // }
-  // reactivateHero () {
+  }
+  reactivateHero () {
   //   //build logic to reactivate a hero that was sidelined by paying the reactivation fee
-  // }
-  // buyBase () {
+  }
+  buyBase () {
   //   //build logic to buy a base on your hero or heroes. Build checks to make sure
   //   //all other heroes of that color set have the same number of bases before you can build another base.
-  // }
-  // buyHQ () {
+  }
+  buyHQ () {
   //   //build logic to buy a headquarters on your hero or heroes. Must have 4 Bases
   //   //on all heroes before one can buy a HQ on a hero.
-  // }
-  // sellHQ () {
+  }
+  sellHQ () {
   //   //build logic to sell a HQ for money.
-  // }
-  // sellBase () {
+  }
+  sellBase () {
   //   //build logic to sell a base on a hero
-  // }
+  }
 }
 
 
@@ -579,8 +579,8 @@ const setCurrentPlayer = (player) => {
 }
 //Functions needed for MONOPOLY
   // 0. Determine Player Amount
-const determinePlayerAmt = () => {
-  //make variable that takes in what user entered in form (maximum  6 players).
+const determinePlayerAmt = (event) => {
+  if (event)
   let total;
   if (total > 6) {
     alert("You cannot have more than 6 players");
@@ -617,7 +617,7 @@ const singleDiceRoll = () => {
 // 9. Determine if player has full color set function
 // 10. Payment for amount of assets owned
 const assetPayment = (currentPlayer) => {
-
+  //listening event for when card is drawn
 }
 // 11. Move player function (Forwards and Backwards Functions, and specific space)
 
@@ -650,6 +650,7 @@ const getOutOfJail = (player) => {
 
 // 15. pay tax if Ultron or Hela space
 const taxSpaces = (player) => {
+  //triggered from listening event 
   player.bankTotal -= 100;
 }
 // 16. battle Child of Thanos
@@ -1051,7 +1052,6 @@ const generatePlayers = (totalPlayers) => {
   }
 }
 const gameStart = () => {
-  playerAmount = determinePlayerAmt();
   //Based on player amount, generate the players
   generatePlayers(playerAmount);
   //After generating players, take the generated players
@@ -1076,6 +1076,11 @@ const gameStart = () => {
     playerAmount--;
   }
 }
+
+//__________________
+// EVENT HANDLERS
+//__________________
+$('#btn-twoPlayer, #btn-threePlayer, #btn-fourPlayer, #btn-fivePlayer, #btn-sixPlayer').on('click', determinePlayerAmt(event.currentTarget))
 
 
 //checklist
