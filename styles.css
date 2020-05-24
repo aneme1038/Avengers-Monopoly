@@ -1,6 +1,6 @@
-* {
+/* * {
   border: 1px solid gold;
-}
+} */
 div {
 	box-sizing: border-box;
 	text-transform: uppercase;
@@ -11,12 +11,12 @@ div {
     width: 80vw;
     height: 80vw;
     margin: 10px auto;
+    position: relative;
 }
 
 .mainSquare {
 	height: 100%;
-	outline: 1px dashed #c2dec5;
-	outline-offset: -13px;
+  transform: translateX(15px);
 }
 
 .row {
@@ -49,7 +49,7 @@ div {
 	flex-grow: 9;
 	outline: 1px solid black;
   background-image: url("./public/centerBack.jpg");
-  background-size: 875px 880px;
+  background-size: 895px 895px;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -196,7 +196,7 @@ div {
 }
 
 .logoBox {
-	width: 46%;
+	width: 50%;
 	background: #ed1b24;
   /* background-image: url("./public/MonopolyTextLogo.png"); */
 	position: absolute;
@@ -208,9 +208,111 @@ div {
 #corvus-glaive {
   background-image: url("./public/corvusGlaiveBackground.jpg");
   transform: rotateZ(180deg);
+  background-size: 125%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#cull-obsidian {
+  background-image: url("./public/cullObsidianBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 135%;
+  background-position: center;
+}
+#proxima-midnight {
+  background-image: url("./public/proximaMidnightBackground.jpg");
+  transform: rotateZ(90deg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+}
+#ebony-maw {
+  background-image: url("./public/ebonyMawBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  transform: rotateZ(270deg);
+}
+#winter-soldier {
+  background-image: url("./public/winterSoldierBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  transform: rotateZ(90deg);
+}
+#black-panther {
+  background-image: url("./public/blackPantherBackground.jpg");
   background-repeat: no-repeat;
   background-size: 125%;
   background-position: center;
+  transform: rotateZ(180deg);
+}
+#ultron {
+  background-image: url("./public/ultronBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 135%;
+  background-position: center;
+}
+#hela {
+  background-image: url("./public/helaBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  transform: rotateZ(270deg);
+}
+#stark1, #stark2, #stark3 {
+  background-image: url("./public/starkCardBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#stark1 {
+  background-size: 135%;
+}
+#stark2 {
+  background-size: 50%;
+  transform: rotateZ(90deg);
+}
+#stark3 {
+  background-size: 50%;
+  transform: rotateZ(270deg);
+}
+#infinity1, #infinity2, #infinity3 {
+  background-image: url("./public/infinityCardBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#infinity1 {
+  background-size: 135%;
+}
+#infinity2 {
+  background-size: 135%;
+  transform: rotateZ(180deg);
+}
+/* #infinity3 {
+  background-size: 50%;
+  transform: rotateZ(270deg)
+} */
+#in-jail {
+  background-image: url("./public/justVisitingBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#go-to-jail {
+  background-image: url("./public/goToJailBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+#free-parking {
+  background-image: url("./public/freeParking.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+#pass-go {
+  background-image: url("./public/goBackground.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
 }
 .logoName {
 	font-size: 7.1vw;
@@ -300,7 +402,7 @@ div {
 
 .corner4-bottom {
 	position: absolute;
-	transform: translateX(112%) translateY(720%);
+	transform: translateX(112%) translateY(520%);
 	font-size: 1.2vw;
 	font-weight: 500;
 }
